@@ -41,6 +41,7 @@ export default async function handler(
 
   //create chain
   const chain = makeChain(vectorStore, (token: string) => {
+    console.log(token);
     sendData(JSON.stringify({ data: token }));
   });
 
@@ -52,6 +53,7 @@ export default async function handler(
     });
 
     console.log('response', response);
+    console.log('sourceDocs:', response.sourceDocuments)
     sendData(JSON.stringify({ sourceDocs: response.sourceDocuments }));
   } catch (error) {
     console.log('error', error);

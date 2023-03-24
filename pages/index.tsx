@@ -26,7 +26,7 @@ export default function Home() {
   }>({
     messages: [
       {
-        message: 'Hi, what would you like to learn about this legal case?',
+        message: 'Hi, what would you like to learn about indian penal code?',
         type: 'apiMessage',
       },
     ],
@@ -138,12 +138,12 @@ export default function Home() {
       ...messages,
       ...(pending
         ? [
-            {
-              type: 'apiMessage',
-              message: pending,
-              sourceDocs: pendingSourceDocs,
-            },
-          ]
+          {
+            type: 'apiMessage',
+            message: pending,
+            sourceDocs: pendingSourceDocs,
+          },
+        ]
         : []),
     ];
   }, [messages, pending, pendingSourceDocs]);
@@ -152,11 +152,8 @@ export default function Home() {
     <>
       <Layout>
         <div className="mx-auto flex flex-col gap-4">
-          <h1 className="text-2xl font-bold leading-[1.1] tracking-tighter text-center">
-            Chat With Your Legal Docs
-          </h1>
-          <main className={styles.main}>
-            <div className={styles.cloud}>
+          <main className={`${styles.main} w-full h-full`}>
+            <div className={`${styles.cloud_old} w-[75vw] bg-zinc-50 text-gray-50 h-[70vh] flex justify-center items-center rounded-lg`}>
               <div ref={messageListRef} className={styles.messagelist}>
                 {chatMessages.map((message, index) => {
                   let icon;
@@ -166,9 +163,9 @@ export default function Home() {
                       <Image
                         src="/bot-image.png"
                         alt="AI"
-                        width="40"
-                        height="40"
-                        className={styles.boticon}
+                        width="50"
+                        height="50"
+                        className={`h-9 w-9 styles.boticon mr-2`}
                         priority
                       />
                     );
@@ -201,7 +198,7 @@ export default function Home() {
                         </div>
                       </div>
                       {message.sourceDocs && (
-                        <div className="p-5">
+                        <div className="p-5 bg-zinc-500 m-5 rounded-lg">
                           <Accordion
                             type="single"
                             collapsible
@@ -299,9 +296,6 @@ export default function Home() {
           </main>
         </div>
         <footer className="m-auto">
-          <a href="https://twitter.com/mayowaoshin">
-            Powered by LangChainAI. Demo built by Mayo (Twitter: @mayowaoshin).
-          </a>
         </footer>
       </Layout>
     </>
